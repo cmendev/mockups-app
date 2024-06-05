@@ -4,6 +4,7 @@ import { fetchProductsData } from "@/services/product";
 import { Product } from "@/types/product";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { Skeleton } from "@/components/Skeleton";
 
 const ProductsPage = () => {
     const [products, setProducts] = useState<Product[] | null>(null);
@@ -31,7 +32,7 @@ const ProductsPage = () => {
     }, []);
 
     if (loading) {
-        return <div className="text-center py-4">Loading...</div>;
+        return <Skeleton />;
     }
 
     if (error) {
@@ -45,7 +46,7 @@ const ProductsPage = () => {
     return (
         <div>
             <h1 className="text-center py-4">Products</h1>
-            <ol className="grid max-sm:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            <ol className="grid max-sm:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                 {products.map(product => (
                     <li key={product.id} className="card m-4 bg-base-100 shadow-xl">
                         <Link href={`/product/${product.id}`} className="card-body p-6 no-underline">
