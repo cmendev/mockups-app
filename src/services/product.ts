@@ -27,12 +27,12 @@ import { User } from '@/types/user';
 
 const mockProduct: Product = {
     id: '1',
-    name: 'Sample Product',
-    productType: 'Electronics',
+    name: 'Macbook Air 13 M1',
+    productType: 'Laptop Mac',
     quantity: 10,
-    price: 99.99,
+    price: 1799.99,
     SKU: 'ELEC-001',
-    supplier: 'Sample Supplier',
+    supplier: 'Apple',
     geoCoordinates: {
       latitude: 37.7749,
       longitude: -122.4194,
