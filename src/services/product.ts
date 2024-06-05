@@ -34,19 +34,19 @@ const mockProduct: Product = {
     SKU: 'ELEC-001',
     supplier: 'Apple',
     geoCoordinates: {
-      latitude: 37.7749,
-      longitude: -122.4194,
+        latitude: 37.7749,
+        longitude: -122.4194,
     },
-  };
-  
-  export const fetchProductData = async (user: User, productId: string): Promise<Product | null> => {
+};
+
+export const fetchProductData = async (user: User, productId: string): Promise<Product | null> => {
     // Simulating API call delay
     await new Promise(resolve => setTimeout(resolve, 1000));
-  
+
     // Simulate fetching the product based on the productId
     if (productId === mockProduct.id) {
-      return mockProduct;
+        return mockProduct;
     } else {
-      return null;
+        return null;
     }
-  };
+};
