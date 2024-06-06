@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <section className="container lg:px-40 pt-16">
+        <section className="hero min-h-screen pt-16">
           {children}
         </section>
       </body>

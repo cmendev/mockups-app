@@ -44,9 +44,9 @@ const ProductsPage = () => {
     }
 
     return (
-        <div>
+        <div className="hero-content flex-col">
             <h1 className="text-center py-4">Products</h1>
-            <ol className="grid max-sm:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            <ol className="grid max-sm:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {products.map(product => (
                     <li key={product.id} className="card m-4 bg-base-100 shadow-xl">
                         <Link href={`/product/${product.id}`} className="card-body p-6 no-underline">
