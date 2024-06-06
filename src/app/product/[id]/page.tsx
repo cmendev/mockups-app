@@ -13,8 +13,11 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
     const getProduct = async () => {
       try {
         const productData = await fetchProductData(params.id);
-        if (productData) setProduct(productData);
-        setError('Product not found');
+        if (productData) {
+          setProduct(productData);
+        } else {
+          setError('Product not found');
+        }
       } catch (err) {
         setError('Failed to fetch product data');
       } finally {
