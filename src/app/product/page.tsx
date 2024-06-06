@@ -32,7 +32,7 @@ const ProductsPage = () => {
     }, []);
 
     if (loading) {
-        return <Skeleton />;
+        return <div className="hero-content flex-col"> <h1 className="text-center py-4">Products</h1> <Skeleton /> </div>;
     }
 
     if (error) {

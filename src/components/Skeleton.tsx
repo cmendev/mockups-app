@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Skeleton = () => {
     return (
-        <ol className="grid max-sm:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <ol className="grid max-sm:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <li className='m-4'>
                 <div className="flex flex-col gap-4 p-6">
                     <div className="skeleton h-4 w-28"></div>

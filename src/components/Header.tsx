@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
 
@@ -40,7 +41,7 @@ const Header = () => {
                             </summary>
                             <ul className="p-2 bg-base-100 rounded-t-none">
                                 <li><a>lang</a></li>
-                                <li><a>☀️/🌒</a></li>
+                                <li><ThemeToggle /></li>
                             </ul>
                         </details>
                     </li>

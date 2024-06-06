@@ -5,6 +5,7 @@ const LoginPage = () => {
     <div className="hero-content flex-col lg:flex-row-reverse">
       <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
         <form className="card-body">
+        <h2 className="card-title">Login</h2>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
