@@ -1,10 +1,9 @@
 import { Product } from '@/types/product';
-import { User } from '@/types/user';
 import { mockProducts } from '../utils/products';
 
 // const API_URL = 'https://api.ficticia.com/products';
 
-export const fetchProductsData = async (user: User): Promise<Product[] | null> => {
+export const fetchProductsData = async (): Promise<Product[] | null> => {
     try {
         // Simulating API call delay
         await new Promise(resolve => setTimeout(resolve, 1000));
