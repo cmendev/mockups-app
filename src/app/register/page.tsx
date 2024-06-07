@@ -71,7 +71,7 @@ const RegisterPage = () => {
               </label>
               <input type="password" placeholder="password" className="input input-bordered" required />
             </div>
-            <div className="form-control lg:mt-9">
+            <div className="form-control mt-9">
               <button className="btn btn-primary">Register</button>
             </div>
           </div>
