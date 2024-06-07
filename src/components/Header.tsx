@@ -8,6 +8,8 @@ const Header = () => {
 
     const pathname = usePathname();
 
+    const shouldShowProductLink = !pathname.startsWith('/product');
+
     return (
         <header className="navbar bg-base-100 fixed z-40">
             <div className="flex-1">
@@ -20,6 +22,13 @@ const Header = () => {
                             Home
                         </Link>
                     </li>
+                    {shouldShowProductLink &&  (
+                        <li>
+                            <Link href="/product">
+                                Product
+                            </Link>
+                        </li>
+                    )}
                     {pathname !== '/login' && (
                         <li>
                             <Link href="/login">

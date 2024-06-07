@@ -1,4 +1,4 @@
-import { MenuPhone } from "@/components/MenuPhone";
+import { MenuPhone } from "@/components/MenuProduct";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
