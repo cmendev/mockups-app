@@ -22,7 +22,6 @@ export default function RootLayout({
         <Header />
         <section className="hero min-h-screen py-16">
           {children}
-          <MenuPhone />
         </section>
       </body>
     </html>
