@@ -14,8 +14,7 @@ const ProductsPage = () => {
     useEffect(() => {
         const getProducts = async () => {
             try {
-                const user = { username: 'user', password: 'password' }; // Sustituye con los datos del usuario real
-                const productsData = await fetchProductsData(user);
+                const productsData = await fetchProductsData();
                 if (productsData) {
                     setProducts(productsData);
                 } else {
