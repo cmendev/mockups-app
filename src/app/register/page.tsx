@@ -33,7 +33,6 @@ const RegisterPage = () => {
                 <span className="label-text">ID</span>
               </label>
               <div className="flex">
-                <input type="text" placeholder="id" className="input input-bordered mr-2 w-[100%]" required />
                 <select className="select select-bordered w-auto">
                   <option disabled selected>Type</option>
                   <option>CC</option>
@@ -43,6 +42,7 @@ const RegisterPage = () => {
                   <option>CI</option>
                   <option>DNI</option>
                 </select>
+                <input type="text" placeholder="id" className="input input-bordered mr-2 w-[100%]" required />
               </div>
             </div>
             <div className="form-control">
