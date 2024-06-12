@@ -42,7 +42,7 @@ const RegisterPage = () => {
                   <option>CI</option>
                   <option>DNI</option>
                 </select>
-                <input type="text" placeholder="id" className="input input-bordered mr-2 w-[100%]" required />
+                <input type="text" placeholder="id" className="input input-bordered ml-2 w-[100%]" required />
               </div>
             </div>
             <div className="form-control">
