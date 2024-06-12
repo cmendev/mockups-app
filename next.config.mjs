@@ -2,7 +2,6 @@
 const nextConfig = {
     basePath: "/mockups-app",
     output: "export",
-    distDir: "dist",
 };
 
 export default nextConfig;
