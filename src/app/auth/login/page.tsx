@@ -1,12 +1,6 @@
 "use client"
 
-import { useInput } from "@/hooks/useInput";
-
 const LoginPage = () => {
-
-
-  const emailInput = useInput('email');
-  const passwordInput = useInput('password');
 
   return (
     <div className="hero-content flex-col lg:flex-row-reverse">
@@ -17,13 +11,13 @@ const LoginPage = () => {
             <label className="label">
               <span className="label-text">Email</span>
             </label>
-            <input {...emailInput} type="email" placeholder="email" className="input input-bordered" required />
+            <input type="email" placeholder="email" className="input input-bordered" required />
           </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
-            <input {...passwordInput} type="password" placeholder="password" className="input input-bordered" required />
+            <input type="password" placeholder="password" className="input input-bordered" required />
             <label className="label">
               <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
             </label>
