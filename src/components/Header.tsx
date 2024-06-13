@@ -25,6 +25,8 @@ const Header = () => {
                 <button
                     onClick={toggleMobileMenu}
                     className="btn btn-ghost btn-circle lg:hidden"
+                    aria-label="Menu Options Navigate"
+                    name="menu"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
