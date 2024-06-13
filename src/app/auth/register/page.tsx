@@ -12,7 +12,6 @@ const RegisterPage: React.FC = () => {
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
-    // Aquí puedes enviar los datos a tu backend o realizar otras acciones
   });
 
   return (
