@@ -28,7 +28,18 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
     getProduct();
   }, [params.id]);
 
-  if (loading) return <div className="text-center py-4">Loading...</div>;
+  if (loading) return (
+    <li className='list-none m-4'>
+                <div className="flex flex-col gap-4 p-6">
+                    <div className="skeleton h-4 w-28"></div>
+                    <div className="skeleton h-4 w-full"></div>
+                    <div className="skeleton h-4 w-full"></div>
+                    <div className="skeleton h-4 w-28"></div>
+                    <div className="skeleton h-4 w-full"></div>
+                    <div className="skeleton h-4 w-full"></div>
+                </div>
+            </li>
+  );
 
   if (error) return <div className="text-center py-4 text-red-500">{error}</div>;
 
