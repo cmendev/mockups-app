@@ -17,7 +17,9 @@ const Header = () => {
     return (
         <header className="navbar bg-base-100 shadow shadow-indigo-500/50 fixed z-40 w-full">
             <div className="flex-1">
-                <a className="btn btn-ghost text-xl">ProStock</a>
+                <Link href="/" className="btn btn-ghost text-xl">
+                    ProStock
+                </Link>
             </div>
             <div className="flex-none">
                 <button
