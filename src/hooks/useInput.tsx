@@ -11,7 +11,7 @@ export const useInput = (type: string): UseFieldResult => {
     const [value, setValue] = useState<string>('');
 
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.value);
+        console.log(setValue(event.target.value))
     };
 
     const reset = () => {
