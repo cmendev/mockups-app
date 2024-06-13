@@ -59,7 +59,7 @@ const Header = () => {
                             </Link>
                         </li>
                     )}
-                    {pathname !== '/auth/register' && (
+                    {pathname !== '/aut/register' && (
                         <li>
                             <Link href="/auth/register">
                                 Register
@@ -72,7 +72,7 @@ const Header = () => {
                                 ⚙️
                             </summary>
                             <ul className="p-2 bg-base-100 rounded-t-none">
-                                <li><a>lang</a></li>
+                                <li>lang</li>
                                 <li><ThemeToggle /></li>
                             </ul>
                         </details>
