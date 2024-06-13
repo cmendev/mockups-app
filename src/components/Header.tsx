@@ -52,7 +52,7 @@ const Header = () => {
                             </Link>
                         </li>
                     )}
-                    {pathname !== '/login' && (
+                    {pathname !== '/auth/login' && (
                         <li>
                             <Link href="/auth/login">
                                 Login
@@ -61,7 +61,7 @@ const Header = () => {
                     )}
                     {pathname !== '/auth/register' && (
                         <li>
-                            <Link href="/register">
+                            <Link href="/auth/register">
                                 Register
                             </Link>
                         </li>
