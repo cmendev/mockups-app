@@ -37,7 +37,7 @@ const RegisterPage: React.FC = () => {
                   placeholder="Email"
                   className={`input input-bordered ${errors.email ? 'input-error' : ''}`}
                 />
-                {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+                {errors.email && <span className="text-red-500">{`${errors.email.message?.toString}`}</span>}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -49,7 +49,7 @@ const RegisterPage: React.FC = () => {
                   placeholder="Name"
                   className={`input input-bordered ${errors.name ? 'input-error' : ''}`}
                 />
-                {errors.name && <span className="text-red-500">{errors.name.message}</span>}
+                {errors.name && <span className="text-red-500">{`${errors.name.message?.toString}`}</span>}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -61,7 +61,7 @@ const RegisterPage: React.FC = () => {
                   placeholder="Lastname"
                   className={`input input-bordered ${errors.lastname ? 'input-error' : ''}`}
                 />
-                {errors.lastname && <span className="text-red-500">{errors.lastname.message}</span>}
+                {errors.lastname && <span className="text-red-500">{`${errors.lastname.message?.toString}`}</span>}
               </div>
             </div>
             <div className="f2 lg:mr-2">
@@ -98,10 +98,10 @@ const RegisterPage: React.FC = () => {
                 </div>
                 <div className="flex">
                   {errors.typeId && (
-                    <span className="text-red-500">{errors.typeId.message}</span>
+                    <span className="text-red-500">{`${errors.typeId.message?.toString}`}</span>
                   )}
                   {errors.identification && (
-                    <span className="text-red-500">-{errors.identification.message}</span>
+                    <span className="text-red-500">-{`${errors.identification.message?.toString}`}</span>
                   )}
                 </div>  
               </div>    
@@ -116,7 +116,7 @@ const RegisterPage: React.FC = () => {
                   placeholder="Phone Number"
                   className={`input input-bordered ${errors.phone ? 'input-error' : ''}`}
                 />
-                {errors.phone && <span className="text-red-500">{errors.phone.message}</span>}
+                {errors.phone && <span className="text-red-500">{`${errors.phone.message?.toString}`}</span>}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -128,7 +128,7 @@ const RegisterPage: React.FC = () => {
                   placeholder="Address"
                   className={`input input-bordered ${errors.address ? 'input-error' : ''}`}
                 />
-                {errors.address && <span className="text-red-500">{errors.address.message}</span>}
+                {errors.address && <span className="text-red-500">{`${errors.address.message?.toString}`}</span>}
               </div>
             </div>
             <div className="f3">
@@ -149,7 +149,7 @@ const RegisterPage: React.FC = () => {
                   className={`input input-bordered ${errors.password ? 'input-error' : ''}`}
                 />
                 {errors.password && (
-                  <span className="text-red-500">{errors.password.message}</span>
+                  <span className="text-red-500">{`${errors.password.message?.toString}`}</span>
                 )}
               </div>
               <div className="form-control">
@@ -167,7 +167,7 @@ const RegisterPage: React.FC = () => {
                   className={`input input-bordered ${errors.confirmPassword ? 'input-error' : ''}`}
                 />
                 {errors.confirmPassword && (
-                  <span className="text-red-500">{errors.confirmPassword.message}</span>
+                  <span className="text-red-500">{`${errors.confirmPassword.message?.toString}`}</span>
                 )}
               </div>
               <div className="form-control mt-9">
