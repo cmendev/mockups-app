@@ -19,7 +19,7 @@ const RegisterPage: React.FC = () => {
       <div className="card shrink-0 w-[100%] shadow-2xl bg-base-100">
         <form className="card-body" onSubmit={onSubmit}>
           <h2 className="card-title">Register</h2>
-          <div className="lg:flex">
+          <div className="lg:flex items-stretch">
             <div className="f1 lg:mr-2">
               <div className="form-control">
                 <label className="label">
