@@ -1,9 +1,9 @@
 interface ModalProps {
-    id: string;
+    id?: string;
     title: string;
     message: string;
-    onConfirm: () => void;
-    onCancel: () => void;
+    onConfirm?: () => void;
+    onCancel?: () => void;
   }
   
   const Modal: React.FC<ModalProps> = ({ id, title, message, onConfirm, onCancel }) => {
