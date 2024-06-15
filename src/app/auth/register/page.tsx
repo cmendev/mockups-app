@@ -1,6 +1,8 @@
-"use client"
+'use client'
 
+import { User } from '@/types/user';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 
 const RegisterPage: React.FC = () => {
   const {
@@ -8,10 +10,18 @@ const RegisterPage: React.FC = () => {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm();
+  } = useForm<User>();
+
+  const router = useRouter();
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
+
+    // Guarda los datos en localStorage
+    localStorage.setItem(data.email, JSON.stringify(data));
+    console.log("User registered successfully");
+
+    router.push('/auth/login');
   });
 
   return (
@@ -73,7 +83,7 @@ const RegisterPage: React.FC = () => {
                   <select
                     {...register('typeId', { required: {
                       value: true,
-                      message: "Tipe ID is required"
+                      message: "Type ID is required"
                     } })}
                     className={`select select-bordered w-auto ${
                       errors.typeId ? 'select-error' : ''

@@ -1,23 +1,67 @@
-"use client"
+'use client'
 
-const LoginPage = () => {
+import { useRouter } from 'next/navigation';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
+interface FormData {
+  email: string;
+  password: string;
+}
+
+const LoginPage: React.FC = () => {
+  const router = useRouter()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
+
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    const userDataJSON = localStorage.getItem(data.email);
+    if (userDataJSON) {
+      const userData = JSON.parse(userDataJSON);
+      if (userData.password === data.password) {
+        console.log(userData.name + " You Are Successfully Logged In");
+        router.push('/product');
+      } else {
+        console.log("Email or Password is not matching with our record");
+      }
+    } else {
+      console.log("Email or Password is not matching with our record");
+    }
+  };
 
   return (
     <div className="hero-content flex-col lg:flex-row-reverse">
       <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-        <form className="card-body">
-        <h2 className="card-title">Login</h2>
+        <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+          <h2 className="card-title">Login</h2>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
             </label>
-            <input type="email" placeholder="email" className="input input-bordered" required />
+            <input
+              {...register("email", { required: true })}
+              type="email"
+              placeholder="email"
+              className="input input-bordered"
+              required
+            />
+            {errors.email && <span className="text-red-500">Email is required</span>}
           </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
-            <input type="password" placeholder="password" className="input input-bordered" required />
+            <input
+              {...register("password", { required: true })}
+              type="password"
+              placeholder="password"
+              className="input input-bordered"
+              required
+            />
+            {errors.password && <span className="text-red-500">Password is required</span>}
             <label className="label">
               <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
             </label>
