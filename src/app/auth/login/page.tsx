@@ -28,21 +28,18 @@ const LoginPage: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const userData = JSON.parse(localStorage.getItem(data.email) || 'null');
-    if (userData) {
-      if (userData.password === data.password) {
-        const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
-        modal.showModal();
 
-        setTimeout(() => {
-          const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
-          modal.close();
-          console.log(userData.name + " You Are Successfully Logged In");
-          localStorage.setItem('authUser', JSON.stringify(userData));
-          router.push('/');
-        }, 1500)
-      } else {
-        console.log("Email or Password is not matching with our record");
-      }
+    if (userData.password === data.password) {
+      const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
+      modal.showModal();
+
+      setTimeout(() => {
+        const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
+        modal.close();
+        console.log(userData.name + " You Are Successfully Logged In");
+        localStorage.setItem('authUser', JSON.stringify(userData));
+        router.push('/');
+      }, 1500)
     } else {
       console.log("Email or Password is not matching with our record");
     }
