@@ -9,19 +9,19 @@ export default function Home() {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const storedUserData = localStorage.getItem('authUser');
+    const storedUserData = typeof window !== "undefined" ? localStorage.getItem('authUser') : false;
     if (storedUserData) {
       setUserData(JSON.parse(storedUserData));
     }
   }, []);
-  
+
   return (
     <main>
 
       {
         !userData ? <Welcome /> : <UserTable />
       }
-      
+
     </main>
   );
 }

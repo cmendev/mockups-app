@@ -32,9 +32,9 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
 
     const onSubmit = handleSubmit((data) => {
         const userDt = JSON.parse(localStorage.getItem('authUser') || 'null');
-
+        console.log(userDt)
         if (userDt) {
-            const storedUsers = localStorage.getItem('users');
+            const storedUsers = localStorage.getItem('authUser');
             if (storedUsers) {
                 const users = JSON.parse(storedUsers);
                 const updatedUsers = users.map((user: User) => {
@@ -70,7 +70,11 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
             localStorage.removeItem('authUser');
         }
 
-        router.push('/auth/login');
+        const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
+        modal.close();
+        setTimeout(() => {
+            router.push('/auth/login');
+        }, 1000)
     };
 
     const handleCancel = () => {
@@ -153,6 +157,7 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
                     </form>
                 </div>
             </div>
+
             <Modal
                 id="my_modal_5"
                 title="You are about to delete your account"

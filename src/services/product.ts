@@ -17,10 +17,8 @@ export const fetchProductsData = async (): Promise<Product[] | null> => {
 };
 
 export const fetchProductData = async (productId: string): Promise<Product | null> => {
-    // Simulating API call delay
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    // Simulate fetching the product based on the productId
     const product = mockProducts.find(product => product.id === productId);
     return product || null;
 };

@@ -1,7 +1,7 @@
 interface ModalProps {
   id?: string;
   title: string;
-  message: string;
+  message?: string;
   onConfirm?: () => void;
   onCancel?: () => void;
 }
