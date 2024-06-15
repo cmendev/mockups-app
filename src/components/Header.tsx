@@ -57,6 +57,13 @@ const Header = () => {
                             Home
                         </Link>
                     </li>
+                    {userData && (
+                    <li>
+                        <Link href="/profile" className={`${pathname === '/profile' ? 'active' : ''}`}>
+                            Profile
+                        </Link>
+                    </li>
+                    )}
                     {shouldShowProductLink && userData && (
                         <li>
                             <Link href="/product">
