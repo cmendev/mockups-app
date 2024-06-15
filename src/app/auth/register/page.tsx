@@ -19,7 +19,7 @@ const RegisterPage: React.FC = () => {
     const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
     modal.showModal();
 
-    localStorage.setItem(data.identification, JSON.stringify(data));
+    localStorage.setItem(data.email, JSON.stringify(data));
     console.log("User registered successfully");
 
     router.push('/auth/login');
