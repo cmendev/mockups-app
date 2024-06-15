@@ -5,6 +5,7 @@ import { User } from '../types/user';
 import Modal from "./Modal";
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
 
 interface ProfileProps extends User {
     onConfirm?: () => void;
@@ -13,6 +14,14 @@ interface ProfileProps extends User {
 
 const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification, typeId, phone, address }) => {
     const router = useRouter();
+    const [userData, setUserData] = useState<User | null>(null);
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('authUser');
+        if (storedUser) {
+            setUserData(JSON.parse(storedUser));
+        }
+    }, []);
 
     const {
         register,
@@ -20,6 +29,31 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
         formState: { errors },
         watch,
     } = useForm<User>();
+
+    const onSubmit = handleSubmit((data) => {
+        const userDt = JSON.parse(localStorage.getItem('authUser') || 'null');
+
+        if (userDt) {
+            const storedUsers = localStorage.getItem('users');
+            if (storedUsers) {
+                const users = JSON.parse(storedUsers);
+                const updatedUsers = users.map((user: User) => {
+                    if (user.identification === userDt.identification) {
+                        return { ...user, password: data.password };
+                    }
+                    return user;
+                });
+                localStorage.setItem('users', JSON.stringify(updatedUsers));
+            }
+
+            const updatedUserData = { ...userDt, password: data.password };
+            localStorage.setItem('authUser', JSON.stringify(updatedUserData));
+            setUserData(updatedUserData);
+            alert("Password updated successfully!");
+        } else {
+            alert("User not defined")
+        }
+    });
 
     const handleOpenModal = () => {
         const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
@@ -77,11 +111,11 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
                     </div>
                 </div>
                 <div className="card w-full bg-neutral text-neutral-content">
-                    <form className="card-body items-center text-center">
+                    <form className="card-body items-center text-center" onSubmit={onSubmit}>
                         <h2 className="card-title">Change Password!</h2>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Confirm Password</span>
+                                <span className="label-text">Password</span>
                             </label>
                             <input
                                 {...register('password', {
@@ -95,6 +129,7 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
                                 placeholder="Password"
                                 className={`input input-bordered ${errors.password ? 'input-error' : ''}`}
                             />
+                            {errors.password && <span className="text-red-500">{errors.password.message}</span>}
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -110,9 +145,10 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
                                 placeholder="Confirm Password"
                                 className={`input input-bordered ${errors.confirmPassword ? 'input-error' : ''}`}
                             />
+                            {errors.confirmPassword && <span className="text-red-500">{errors.confirmPassword.message}</span>}
                         </div>
                         <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Change Password</button>
+                            <button className="btn btn-primary" type="submit">Change Password</button>
                         </div>
                     </form>
                 </div>
