@@ -87,7 +87,6 @@ const Header = () => {
                                 {userData && (
                                     <li><button onClick={handleLogout}>Logout</button></li>
                                 )}
-                                <li>lang</li>
                                 <li><ThemeToggle /></li>
                             </ul>
                         </details>
