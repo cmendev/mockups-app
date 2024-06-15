@@ -10,7 +10,7 @@ ProStock was created as a project of the Talento Tech bootcamp, and it includes 
 
 ## Preview
 
-When the order placed from the Medusa's storefront. A message will be send to the Discord Server using the WebHook.
+Here is a small part of the UI of ProStock!
 
 *Homepage*
 ![image](/public/image-one.png)
