@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 interface FormData {
@@ -17,12 +18,19 @@ const LoginPage: React.FC = () => {
     formState: { errors },
   } = useForm<FormData>();
 
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('authUser') || '{}');
+    if (userData && userData.email) {
+      router.push('/product');
+    }
+  }, [router]);
+
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    const userDataJSON = localStorage.getItem(data.email);
-    if (userDataJSON) {
-      const userData = JSON.parse(userDataJSON);
+    const userData = JSON.parse(localStorage.getItem(data.email) || 'null');
+    if (userData) {
       if (userData.password === data.password) {
         console.log(userData.name + " You Are Successfully Logged In");
+        localStorage.setItem('authUser', JSON.stringify(userData));
         router.push('/product');
       } else {
         console.log("Email or Password is not matching with our record");
