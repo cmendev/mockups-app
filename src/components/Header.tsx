@@ -21,7 +21,7 @@ const Header = () => {
     };
 
     const userData = JSON.parse(localStorage.getItem('authUser') || 'null');
-    
+
     return (
         <header className="navbar bg-base-100 shadow shadow-indigo-500/50 fixed z-40 w-full">
             <div className="flex-1">
@@ -57,7 +57,7 @@ const Header = () => {
                             Home
                         </Link>
                     </li>
-                    {shouldShowProductLink && (
+                    {shouldShowProductLink && userData && (
                         <li>
                             <Link href="/product">
                                 Product

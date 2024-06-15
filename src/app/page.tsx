@@ -1,5 +1,6 @@
 'use client'
 
+import UserTable from "@/components/UsersTable";
 import Welcome from "@/components/Welcome";
 import { useEffect, useState } from "react";
 
@@ -18,7 +19,7 @@ export default function Home() {
     <main>
 
       {
-        !userData && <Welcome />
+        !userData ? <Welcome /> : <UserTable />
       }
       
     </main>
