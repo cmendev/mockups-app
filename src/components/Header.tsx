@@ -20,6 +20,8 @@ const Header = () => {
         router.push('/auth/login');
     };
 
+    const userData = JSON.parse(localStorage.getItem('authUser') || 'null');
+    
     return (
         <header className="navbar bg-base-100 shadow shadow-indigo-500/50 fixed z-40 w-full">
             <div className="flex-1">
@@ -62,14 +64,14 @@ const Header = () => {
                             </Link>
                         </li>
                     )}
-                    {pathname !== '/auth/login' && (
+                    {pathname !== '/auth/login' && !userData && (
                         <li>
                             <Link href="/auth/login">
                                 Login
                             </Link>
                         </li>
                     )}
-                    {pathname !== '/auth/register' && (
+                    {pathname !== '/auth/register' && !userData && (
                         <li>
                             <Link href="/auth/register">
                                 Register
@@ -82,7 +84,9 @@ const Header = () => {
                                 ⚙️
                             </summary>
                             <ul className="p-2 bg-base-100 rounded-t-none">
-                                <li><button onClick={handleLogout}>Logout</button></li>
+                                {userData && (
+                                    <li><button onClick={handleLogout}>Logout</button></li>
+                                )}
                                 <li>lang</li>
                                 <li><ThemeToggle /></li>
                             </ul>

@@ -31,7 +31,7 @@ const LoginPage: React.FC = () => {
       if (userData.password === data.password) {
         console.log(userData.name + " You Are Successfully Logged In");
         localStorage.setItem('authUser', JSON.stringify(userData));
-        router.push('/product');
+        router.push('/');
       } else {
         console.log("Email or Password is not matching with our record");
       }

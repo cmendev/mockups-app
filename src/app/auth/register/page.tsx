@@ -17,7 +17,6 @@ const RegisterPage: React.FC = () => {
   const onSubmit = handleSubmit((data) => {
     console.log(data);
 
-    // Guarda los datos en localStorage
     localStorage.setItem(data.email, JSON.stringify(data));
     console.log("User registered successfully");
 
