@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React, { useState, useEffect } from 'react';
 
@@ -11,7 +11,6 @@ const ThemeToggle: React.FC = () => {
     document.querySelector('html')?.setAttribute('data-theme', newTheme);
   };
 
-  // Este efecto asegura que el tema inicial se aplique al cargar el componente
   useEffect(() => {
     document.querySelector('html')?.setAttribute('data-theme', theme);
   }, [theme]);
