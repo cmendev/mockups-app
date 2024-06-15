@@ -27,23 +27,31 @@ const LoginPage: React.FC = () => {
   }, [router]);
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    const userData = JSON.parse(localStorage.getItem(data.email) || 'null');
-
-    if (userData.password === data.password) {
-      const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
-      modal.showModal();
-
-      setTimeout(() => {
+    const userDataJson = localStorage.getItem(data.email);
+    console.log(userDataJson);
+  
+    if (userDataJson) {
+      const userData = JSON.parse(userDataJson);
+  
+      if (userData.password === data.password) {
         const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
-        modal.close();
-        console.log(userData.name + " You Are Successfully Logged In");
-        localStorage.setItem('authUser', JSON.stringify(userData));
-        router.push('/');
-      }, 1500)
+        modal.showModal();
+  
+        setTimeout(() => {
+          const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
+          modal.close();
+          console.log(userData.name + " You Are Successfully Logged In");
+          localStorage.setItem('authUser', JSON.stringify(userData));
+          router.push('/');
+        }, 1500);
+      } else {
+        console.log("Email or Password is not matching with our record 2");
+      }
     } else {
-      console.log("Email or Password is not matching with our record");
+      console.log("Email or Password is not matching with our record 1");
     }
   };
+  
 
   return (
     <>
