@@ -31,32 +31,41 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
     } = useForm<User>();
 
     const onSubmit = handleSubmit((data) => {
-        const userDt = JSON.parse(localStorage.getItem('authUser') || 'null');
-        console.log(userDt)
-        if (userDt) {
-            const storedUsers = localStorage.getItem('authUser');
-            if (storedUsers) {
-                const users = JSON.parse(storedUsers);
-                const updatedUsers = users.map((user: User) => {
-                    if (user.identification === userDt.identification) {
-                        return { ...user, password: data.password };
+        const authUser: User | null = JSON.parse(localStorage.getItem('authUser') || 'null');
+        
+        if (authUser) {
+            const users: { [key: string]: User } = {};
+        
+            for (const key in localStorage) {
+                try {
+                    const user = JSON.parse(localStorage.getItem(key) || 'null');
+                    if (user && user.email) {
+                        users[key] = user;
                     }
-                    return user;
-                });
-                localStorage.setItem('users', JSON.stringify(updatedUsers));
+                } catch (e) {
+                    console.error(e)
+                }
             }
-
-            const updatedUserData = { ...userDt, password: data.password };
-            localStorage.setItem('authUser', JSON.stringify(updatedUserData));
-            setUserData(updatedUserData);
-            alert("Password updated successfully!");
+        
+            if (users[authUser.email]) {
+                users[authUser.email].password = data.password;
+        
+                localStorage.setItem(authUser.email, JSON.stringify(users[authUser.email]));
+            } else {
+                console.log('Copia de authUser no encontrada en el array.');
+            }
         } else {
-            alert("User not defined")
+            console.log('authUser no está disponible en el localStorage.');
         }
     });
 
     const handleOpenModal = () => {
-        const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
+        const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
+        modal.showModal();
+    };
+
+    const handleOpenModalForm = () => {
+        const modal = document.getElementById('my_modal_2') as HTMLDialogElement;
         modal.showModal();
     };
 
@@ -70,7 +79,7 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
             localStorage.removeItem('authUser');
         }
 
-        const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
+        const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
         modal.close();
         setTimeout(() => {
             router.push('/auth/login');
@@ -79,7 +88,13 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
 
     const handleCancel = () => {
         console.log('Cancelled');
-        const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
+        const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
+        modal.close();
+    };
+
+    const handleCancelForm = () => {
+        console.log('Cancelled');
+        const modal = document.getElementById('my_modal_2') as HTMLDialogElement;
         modal.close();
     };
 
@@ -103,8 +118,8 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
                                             <p className="mt-3 text-base leading-relaxed text-center text-gray-200">Number Phone: {phone}</p>
                                             <p className="mt-3 text-base leading-relaxed text-center text-gray-200">Address: {address}</p>
 
-                                            <div className="w-full mt-6">
-                                                <button className="btn btn-info mr-2">Update</button>
+                                            <div className="w-full mt-6 flex justify-between">
+                                                <button className="btn btn-info">Update</button>
                                                 <button className="btn btn-error" onClick={handleOpenModal}>Delete Account</button>
                                             </div>
                                         </div>
@@ -152,14 +167,20 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
                             {errors.confirmPassword && <span className="text-red-500">{errors.confirmPassword.message}</span>}
                         </div>
                         <div className="card-actions justify-end">
-                            <button className="btn btn-primary" type="submit">Change Password</button>
+                            <button className="btn btn-primary" onClick={handleCancelForm}>Change Password</button>
                         </div>
+                        <Modal
+                            id="my_modal_2"
+                            title="Are you sure you want to change your password?"
+                            message="Remember not to use passwords that are too difficult to remember, as this will make it very easy to return!"
+                            onCancel={handleCancelForm}
+                        />
                     </form>
                 </div>
             </div>
 
             <Modal
-                id="my_modal_5"
+                id="my_modal_1"
                 title="You are about to delete your account"
                 message="Are you sure you want to delete it? The data will be permanently deleted and cannot be recovered."
                 onConfirm={handleConfirm}
