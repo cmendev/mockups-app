@@ -167,7 +167,7 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
                             {errors.confirmPassword && <span className="text-red-500">{errors.confirmPassword.message}</span>}
                         </div>
                         <div className="card-actions justify-end">
-                            <button className="btn btn-primary" onClick={handleCancelForm}>Change Password</button>
+                            <button className="btn btn-primary" onClick={handleOpenModalForm}>Change Password</button>
                         </div>
                         <Modal
                             id="my_modal_2"
