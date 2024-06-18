@@ -14,14 +14,6 @@ interface ProfileProps extends User {
 
 const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification, typeId, phone, address }) => {
     const router = useRouter();
-    const [userData, setUserData] = useState<User | null>(null);
-
-    useEffect(() => {
-        const storedUser = localStorage.getItem('authUser');
-        if (storedUser) {
-            setUserData(JSON.parse(storedUser));
-        }
-    }, []);
 
     const {
         register,
@@ -49,8 +41,12 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
         
             if (users[authUser.email]) {
                 users[authUser.email].password = data.password;
-        
-                localStorage.setItem(authUser.email, JSON.stringify(users[authUser.email]));
+                const modal = document.getElementById('my_modal_3') as HTMLDialogElement;
+                modal.showModal()
+                setTimeout(() => {
+                    modal.close()
+                    localStorage.setItem(authUser.email, JSON.stringify(users[authUser.email]));
+                }, 3000)
             } else {
                 console.log('Copia de authUser no encontrada en el array.');
             }
@@ -69,7 +65,7 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
         modal.showModal();
     };
 
-    const handleConfirm = () => {
+    const handleConfirmDeleteAccount = () => {
         const storedUsers = localStorage.getItem('users');
         if (storedUsers) {
             const users = JSON.parse(storedUsers);
@@ -86,7 +82,7 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
         }, 1000)
     };
 
-    const handleCancel = () => {
+    const handleCancelDeleteAccount = () => {
         console.log('Cancelled');
         const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
         modal.close();
@@ -167,12 +163,13 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
                             {errors.confirmPassword && <span className="text-red-500">{errors.confirmPassword.message}</span>}
                         </div>
                         <div className="card-actions justify-end">
-                            <button className="btn btn-primary" onClick={handleOpenModalForm}>Change Password</button>
+                            <button type="button" className="btn btn-primary" onClick={handleOpenModalForm}>Change Password</button>
                         </div>
                         <Modal
                             id="my_modal_2"
                             title="Are you sure you want to change your password?"
                             message="Remember not to use passwords that are too difficult to remember, as this will make it very easy to return!"
+                            onConfirm={handleCancelForm}
                             onCancel={handleCancelForm}
                         />
                     </form>
@@ -183,8 +180,16 @@ const Profile: React.FC<ProfileProps> = ({ email, name, lastname, identification
                 id="my_modal_1"
                 title="You are about to delete your account"
                 message="Are you sure you want to delete it? The data will be permanently deleted and cannot be recovered."
-                onConfirm={handleConfirm}
-                onCancel={handleCancel}
+                onConfirm={handleConfirmDeleteAccount}
+                onCancel={handleCancelDeleteAccount}
+            />
+
+            <Modal
+                id="my_modal_3"
+                title="Password changed"
+                message="Your password has been changed successfully!"
+                cancel={false}
+                submit={false}
             />
         </>
     );

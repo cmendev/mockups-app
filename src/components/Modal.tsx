@@ -3,11 +3,12 @@ interface ModalProps {
   title: string;
   message?: string;
   submit?: Boolean;
+  cancel?: Boolean;
   onConfirm?: () => void;
   onCancel?: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ id, title, message, submit = true, onConfirm, onCancel }) => {
+const Modal: React.FC<ModalProps> = ({ id, title, message, submit = true, cancel = true, onConfirm, onCancel }) => {
   return (
     <dialog id={id} className="modal modal-bottom sm:modal-middle">
       <div className="modal-box">
@@ -15,7 +16,7 @@ const Modal: React.FC<ModalProps> = ({ id, title, message, submit = true, onConf
         <p className="py-4">{message}</p>
         <div className="modal-action">
           <button className={`btn  btn-primary ${submit ? ' ' : 'hidden'}`} type="submit" onClick={onConfirm}>Confirm</button>
-          <button className="btn" onClick={onCancel}>Cancel</button>
+          <button className={`btn ${cancel ? ' ' : 'hidden'}`} onClick={onCancel}>Cancel</button>
         </div>
       </div>
     </dialog>
