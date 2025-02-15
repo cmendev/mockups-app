@@ -2,7 +2,7 @@
 
 ## Participants
 
-Carlos Andrés Mendoza - AndresMGDev
+Carlos Andrés Mendoza - cmendev
 
 ## Description
 
